@@ -4,4 +4,4 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MessageController;
 
 
-Route::post('/42yUojv1YQPOssPEpn5i3q6vjdhh7hl7djVWDIAVhFDRMAwZ1tj0Og2v4PWyj4PZ/webhook', [MessageController::class, 'store']);
+Route::post('/42yUojv1YQPOssPEpn5i3q6vjdhh7hl7djVWDIAVhFDRMAwZ1tj0Og2v4PWyj4PZ/webhook', [MessageController::class, 'api']);
