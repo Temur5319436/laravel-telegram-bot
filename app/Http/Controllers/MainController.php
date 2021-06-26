@@ -24,7 +24,7 @@ class MainController extends Controller
         try {
             $this->telegram->sendMessage([
                 'chat_id' => $chatId,
-                'text' => $request->toArray()
+                'text' => json_encode($request->toArray(), 128)
             ]);
         } catch (\Throwable $th) {
             $this->telegram->sendMessage([
@@ -37,14 +37,14 @@ class MainController extends Controller
     // -------- Develop ------- //
     public function develop(Request $request)
     {
-        return $chatId = $request->getChatId();
+        $chatId = $request->getChatId();
         $message = $request->getMessage();
         $messageId = $request->getMessageId();
         $date = $request->getDate();
 
         $this->telegram->sendMessage([
             'chat_id' => $chatId,
-            'text' => $message
+            'text' => json_encode($request->toArray(), 128)
         ]);
     }
 }
