@@ -11,11 +11,10 @@ class MessageController extends Controller
     {
         $telegram = new Telegram(env('TELEGRAM_BOT_TOKEN'));
         $chatId = $telegram->ChatID();
-        $text = $telegram->getData();
 
         $telegram->sendMessage([
             'chat_id' => $chatId,
-            'text' => json_encode($request->toArray(), 128)
+            'text' => json_encode($request->get('chat'), 128)
         ]);
     }
 }
