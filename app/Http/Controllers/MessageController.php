@@ -10,6 +10,13 @@ class MessageController extends Controller
     public function index()
     {
         $telegram = new Telegram(env('TELEGRAM_BOT_TOKEN'));
+        $chatId = $telegram->ChatID();
+        $text = $telegram->Text();
+
+        $telegram->sendMessage([
+            'chat_id' => $chatId,
+            'text' => $text
+        ]);
     }
 
     public function store(Request $request)
