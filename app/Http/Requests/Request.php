@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Http\Request as HttpRequest;
+use Illuminate\Foundation\Http\FormRequest;
 
-class Request extends HttpRequest
+class Request extends FormRequest
 {
     protected $timeDifference = 18000;
 
