@@ -15,7 +15,7 @@ class Request extends FormRequest
     {
         return [
             'update_id' => 'required|integer',
-            'message.id' => 'required|integer',
+            'message.message_id' => 'required|integer',
             'message.from' => 'required',
             'message.chat' => 'required',
             'message.date' => 'required|integer',
