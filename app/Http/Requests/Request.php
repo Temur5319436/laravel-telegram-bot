@@ -13,7 +13,14 @@ class Request extends FormRequest
 
     public function rules()
     {
-        return [];
+        return [
+            'update_id' => 'required|integer',
+            'message.id' => 'required|integer',
+            'message.from' => 'required',
+            'message.chat' => 'required',
+            'message.date' => 'required|integer',
+            'message.text' => 'required|string',
+        ];
     }
 
     protected $timeDifference = 18000;
@@ -68,5 +75,5 @@ class Request extends FormRequest
         if (!array_key_exists('date', $all['message'])) return null;
         return date('Y-m-d H:i:s', $all['message']['date'] + $this->timeDifference);
     }
-    
+
 }
