@@ -8,7 +8,7 @@ trait TelegramRequest
 
     protected $timeDifference = 18000;
 
-    public function getUserFirstName()
+    public function getFirstName()
     {
         $all = $this->request->all();
         if (!array_key_exists('message', $all)) return null;
@@ -17,7 +17,7 @@ trait TelegramRequest
         return $all['message']['from']['first_name'];
     }
 
-    public function getUserLastName()
+    public function getLastName()
     {
         $all = $this->request->all();
         if (!array_key_exists('message', $all)) return null;
