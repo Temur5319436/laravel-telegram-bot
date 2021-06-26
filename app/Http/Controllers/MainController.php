@@ -19,17 +19,10 @@ class MainController extends Controller
         $messageId = $request->getMessageId();
         $date = $request->getDate();
 
-        try {
-            $telegram->sendMessage([
-                'chat_id' => $chatId,
-                'text' => $message
-            ]);
-        } catch (\Throwable $th) {
-            $telegram->sendMessage([
-                'chat_id' => $chatId,
-                'text' => $th->getMessage()
-            ]);
-        }
+        $telegram->sendMessage([
+            'chat_id' => $chatId,
+            'text' => $message
+        ]);
     }
 
     // -------- Develop ------- //
