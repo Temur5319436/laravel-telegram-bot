@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TelegramRequest;
 use Telegram;
 use Illuminate\Http\Request;
+use Telegram\Bot\TelegramRequest as BotTelegramRequest;
 
 class MessageController extends Controller
 {
-    public function api(Request $request)
+    public function api(TelegramRequest $request)
     {
         $telegram = new Telegram(env('TELEGRAM_BOT_TOKEN'));
         $chatId = $telegram->ChatID();
