@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Telegram;
 use App\Http\Requests\TelegramRequest;
+use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
@@ -14,7 +15,7 @@ class MainController extends Controller
         $this->telegram = new Telegram(env('TELEGRAM_BOT_TOKEN'));
     }
 
-    public function api(TelegramRequest $request)
+    public function api(Request $request)
     {
         try {
             $firstName = $request->getFirstName();
