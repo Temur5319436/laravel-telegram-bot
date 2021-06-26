@@ -7,10 +7,6 @@ use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
-    public function __construct()
-    {
-    }
-
     public function api(Request $request)
     {
         $telegram = new Telegram(env('TELEGRAM_BOT_TOKEN'));
