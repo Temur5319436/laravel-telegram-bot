@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Telegram;
-use Illuminate\Http\Request;
+use App\Http\Requests\TelegramRequest;
 
 class MainController extends Controller
 {
@@ -13,7 +13,7 @@ class MainController extends Controller
     {
         $this->telegram = new Telegram(env('TELEGRAM_BOT_TOKEN'));
     }
-    public function api(Request $request)
+    public function api(TelegramRequest $request)
     {
         $firstName = $request->getFirstName();
         $lastName = $request->getLastName();
@@ -37,7 +37,7 @@ class MainController extends Controller
     }
 
     // -------- Develop ------- //
-    public function develop(Request $request)
+    public function develop(TelegramRequest $request)
     {
         $firstName = $request->getFirstName();
         $lastName = $request->getLastName();
