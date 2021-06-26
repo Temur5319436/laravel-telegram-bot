@@ -7,15 +7,18 @@ use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
+    protected Telegram $telegram;
+
+    public function __construct()
+    {
+        $this->telegram = new Telegram(env('TELEGRAM_BOT_TOKEN'));   
+    }
     public function api(Request $request)
     {
-        $telegram = new Telegram(env('TELEGRAM_BOT_TOKEN'));
         $chatId = $request->getChatId();
         $message = $request->getMessage();
-        $messageId = $request->getMessageId();
-        $date = $request->getDate();
 
-        $telegram->sendMessage([
+        $this->telegram->sendMessage([
             'chat_id' => $chatId,
             'text' => $message
         ]);
@@ -24,13 +27,10 @@ class MainController extends Controller
     // -------- Develop ------- //
     public function develop(Request $request)
     {
-        $telegram = new Telegram(env('TELEGRAM_BOT_TOKEN'));
         $chatId = $request->getChatId();
         $message = $request->getMessage();
-        $messageId = $request->getMessageId();
-        $date = $request->getDate();
 
-        $telegram->sendMessage([
+        $this->telegram->sendMessage([
             'chat_id' => $chatId,
             'text' => json_encode($request->toArray(), 128)
         ]);
