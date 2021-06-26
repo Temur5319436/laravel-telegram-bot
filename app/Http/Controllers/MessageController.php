@@ -14,48 +14,59 @@ class MessageController extends Controller
         $chatId = $telegram->ChatID();
         $text = $telegram->Text();
 
-        $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
-        fwrite($myfile, $text);
-        fclose($myfile);
-
-        // $telegram->sendMessage([
-        //     'chat_id' => $chatId,
-        //     'text' => $text
-        // ]);
+        $telegram->sendMessage([
+            'chat_id' => $chatId,
+            'text' => $text
+        ]);
     }
 
     public function store(Request $request)
     {
-        $text = 'store';
-        $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
-        fwrite($myfile, $text);
-        fclose($myfile);
+        $telegram = new Telegram(env('TELEGRAM_BOT_TOKEN'));
+        $chatId = $telegram->ChatID();
+        $text = $telegram->Text();
+
+        $telegram->sendMessage([
+            'chat_id' => $chatId,
+            'text' => $text
+        ]);
     }
 
     public function show($id)
     {
-        $text = 'show';
-        $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
-        fwrite($myfile, $text);
-        fclose($myfile);
+        $telegram = new Telegram(env('TELEGRAM_BOT_TOKEN'));
+        $chatId = $telegram->ChatID();
+        $text = $telegram->Text();
 
+        $telegram->sendMessage([
+            'chat_id' => $chatId,
+            'text' => $text
+        ]);
     }
 
     public function update(Request $request, $id)
     {
-        $text = 'put';
-        $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
-        fwrite($myfile, $text);
-        fclose($myfile);
+        $telegram = new Telegram(env('TELEGRAM_BOT_TOKEN'));
+        $chatId = $telegram->ChatID();
+        $text = $telegram->Text();
+
+        $telegram->sendMessage([
+            'chat_id' => $chatId,
+            'text' => $text
+        ]);
 
     }
 
     public function destroy($id)
     {
-        $text = 'delete';
-        $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
-        fwrite($myfile, $text);
-        fclose($myfile);
+        $telegram = new Telegram(env('TELEGRAM_BOT_TOKEN'));
+        $chatId = $telegram->ChatID();
+        $text = $telegram->Text();
+
+        $telegram->sendMessage([
+            'chat_id' => $chatId,
+            'text' => $text
+        ]);
 
     }
 }
