@@ -15,7 +15,7 @@ class MainController extends Controller
     }
     public function api(TelegramRequest $request)
     {
-        try {
+        // try {
             $firstName = $request->getFirstName();
             $lastName = $request->getLastName();
             $chatId = $request->getChatId();
@@ -27,14 +27,14 @@ class MainController extends Controller
                 'chat_id' => $chatId,
                 'text' => $message
             ]);
-        } catch (\Throwable $th) {
-            // --------- Error -------- //
-            return response()->json([
-                'message' => $th->getMessage(),
-                'file' => $th->getFile(),
-                'line' => $th->getLine()
-            ]);
-        }
+        // } catch (\Throwable $th) {
+        //     // --------- Error -------- //
+        //     return response()->json([
+        //         'message' => $th->getMessage(),
+        //         'file' => $th->getFile(),
+        //         'line' => $th->getLine()
+        //     ]);
+        // }
     }
 
     // -------- Develop ------- //
