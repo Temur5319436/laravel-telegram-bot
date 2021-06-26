@@ -14,7 +14,7 @@ class MessageController extends Controller
 
         $telegram->sendMessage([
             'chat_id' => $chatId,
-            'text' => json_encode($request->get('chat'), 128)
+            'text' => json_encode($request->get('message'), 128)
         ]);
     }
 }
