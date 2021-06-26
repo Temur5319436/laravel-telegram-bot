@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\TelegramRequest;
 use Telegram;
-use Illuminate\Http\Request;
-use Telegram\Bot\TelegramRequest as BotTelegramRequest;
+use App\Http\Requests\TelegramRequest;
 
 class MessageController extends Controller
 {
@@ -16,7 +14,7 @@ class MessageController extends Controller
 
         $telegram->sendMessage([
             'chat_id' => $chatId,
-            'text' => json_encode($request->get('message'), 128)
+            'text' => json_encode($request->toArray(), 128)
         ]);
     }
 }
