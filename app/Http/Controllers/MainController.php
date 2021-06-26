@@ -11,11 +11,11 @@ class MainController extends Controller
 
     public function __construct()
     {
-        $this->telegram = new Telegram(env('TELEGRAM_BOT_TOKEN'));
     }
 
     public function api(Request $request)
     {
+        $this->telegram = new Telegram(env('TELEGRAM_BOT_TOKEN'));
         $chatId = $request->getChatId();
         $message = $request->getMessage();
         $messageId = $request->getMessageId();
