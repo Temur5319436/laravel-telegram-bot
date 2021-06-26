@@ -26,17 +26,36 @@ class MessageController extends Controller
 
     public function store(Request $request)
     {
+        $text = 'store';
+        $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+        fwrite($myfile, $text);
+        fclose($myfile);
     }
 
     public function show($id)
     {
+        $text = 'show';
+        $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+        fwrite($myfile, $text);
+        fclose($myfile);
+
     }
 
     public function update(Request $request, $id)
     {
+        $text = 'put';
+        $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+        fwrite($myfile, $text);
+        fclose($myfile);
+
     }
 
     public function destroy($id)
     {
+        $text = 'delete';
+        $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+        fwrite($myfile, $text);
+        fclose($myfile);
+
     }
 }
