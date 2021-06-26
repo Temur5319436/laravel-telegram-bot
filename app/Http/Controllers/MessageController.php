@@ -20,6 +20,12 @@ class MessageController extends Controller
 
     public function store(Request $request)
     {
+        $telegram = new Telegram(env('TELEGRAM_BOT_TOKEN'));
+
+        $telegram->sendMessage([
+            'chat_id' => 1622751454,
+            'text' => "text"
+        ]);
     }
 
     public function show($id)
