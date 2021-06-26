@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\Request as HttpRequest;
 
-class TelegramRequest extends Request
+class Request extends HttpRequest
 {
     protected $timeDifference = 18000;
 

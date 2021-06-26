@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Telegram;
-use App\Http\Requests\TelegramRequest;
-use Illuminate\Http\Request;
+use App\Http\Requests\Request;
 
 class MainController extends Controller
 {
@@ -40,7 +39,7 @@ class MainController extends Controller
     }
 
     // -------- Develop ------- //
-    public function develop(TelegramRequest $request)
+    public function develop(Request $request)
     {
         $firstName = $request->getFirstName();
         $lastName = $request->getLastName();
