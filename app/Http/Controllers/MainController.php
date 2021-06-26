@@ -7,21 +7,22 @@ use App\Http\Requests\TelegramRequest;
 
 class MainController extends Controller
 {
-    protected $telegram;
+    protected Telegram $telegram;
 
     public function __construct()
     {
         $this->telegram = new Telegram(env('TELEGRAM_BOT_TOKEN'));
     }
-    public function api(TelegramRequest $telegramRequest)
+
+    public function api(TelegramRequest $request)
     {
         try {
-            $firstName = $telegramRequest->getFirstName();
-            $lastName = $telegramRequest->getLastName();
-            $chatId = $telegramRequest->getChatId();
-            $message = $telegramRequest->getMessage();
-            $messageId = $telegramRequest->getMessageId();
-            $date = $telegramRequest->getDate();
+            $firstName = $request->getFirstName();
+            $lastName = $request->getLastName();
+            $chatId = $request->getChatId();
+            $message = $request->getMessage();
+            $messageId = $request->getMessageId();
+            $date = $request->getDate();
 
             $this->telegram->sendMessage([
                 'chat_id' => $chatId,
