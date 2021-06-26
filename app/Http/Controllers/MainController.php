@@ -30,10 +30,13 @@ class MainController extends Controller
             ]);
         } catch (\Exception $exception) {
             // --------- Error -------- //
-            return response()->json([
-                'message' => $exception->getMessage(),
-                'file' => $exception->getFile(),
-                'line' => $exception->getLine()
+            $this->telegram->sendMessage([
+                'chat_id' => $chatId,
+                'text' => json_encode([
+                    'message' => $exception->getMessage(),
+                    'file' => $exception->getFile(),
+                    'line' => $exception->getLine()
+                ], 128)
             ]);
         }
     }
