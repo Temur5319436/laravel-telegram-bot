@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Traits\TelegramRequest as TraitsTelegramRequest;
 use Illuminate\Http\Request;
 
 class TelegramRequest extends Request

@@ -15,23 +15,24 @@ class MainController extends Controller
     }
     public function api(TelegramRequest $request)
     {
-        $firstName = $request->getFirstName();
-        $lastName = $request->getLastName();
-        $chatId = $request->getChatId();
-        $message = $request->getMessage();
-        $messageId = $request->getMessageId();
-        $date = $request->getDate();
-
         try {
+            $firstName = $request->getFirstName();
+            $lastName = $request->getLastName();
+            $chatId = $request->getChatId();
+            $message = $request->getMessage();
+            $messageId = $request->getMessageId();
+            $date = $request->getDate();
+
             $this->telegram->sendMessage([
                 'chat_id' => $chatId,
                 'text' => $message
             ]);
         } catch (\Throwable $th) {
             // --------- Error -------- //
-            $this->telegram->sendMessage([
-                'chat_id' => $chatId,
-                'text' => $th->getMessage()
+            return response()->json([
+                'message' => $th->getMessage(),
+                'file' => $th->getFile(),
+                'line' => $th->getLine()
             ]);
         }
     }
