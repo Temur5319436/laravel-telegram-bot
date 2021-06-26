@@ -24,7 +24,7 @@ class MainController extends Controller
         try {
             $this->telegram->sendMessage([
                 'chat_id' => $chatId,
-                'text' => json_encode($request->toArray(), 128)
+                'text' => $message
             ]);
         } catch (\Throwable $th) {
             $this->telegram->sendMessage([
