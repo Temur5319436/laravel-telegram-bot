@@ -7,34 +7,34 @@ use App\Http\Requests\TelegramRequest;
 
 class MainController extends Controller
 {
-    protected Telegram $telegram;
+    protected $telegram;
 
     public function __construct()
     {
         $this->telegram = new Telegram(env('TELEGRAM_BOT_TOKEN'));
     }
-    public function api(TelegramRequest $request)
+    public function api(TelegramRequest $telegramRequest)
     {
-        // try {
-            $firstName = $request->getFirstName();
-            $lastName = $request->getLastName();
-            $chatId = $request->getChatId();
-            $message = $request->getMessage();
-            $messageId = $request->getMessageId();
-            $date = $request->getDate();
+        try {
+            $firstName = $telegramRequest->getFirstName();
+            $lastName = $telegramRequest->getLastName();
+            $chatId = $telegramRequest->getChatId();
+            $message = $telegramRequest->getMessage();
+            $messageId = $telegramRequest->getMessageId();
+            $date = $telegramRequest->getDate();
 
             $this->telegram->sendMessage([
                 'chat_id' => $chatId,
                 'text' => $message
             ]);
-        // } catch (\Throwable $th) {
-        //     // --------- Error -------- //
-        //     return response()->json([
-        //         'message' => $th->getMessage(),
-        //         'file' => $th->getFile(),
-        //         'line' => $th->getLine()
-        //     ]);
-        // }
+        } catch (\Exception $exception) {
+            // --------- Error -------- //
+            return response()->json([
+                'message' => $exception->getMessage(),
+                'file' => $exception->getFile(),
+                'line' => $exception->getLine()
+            ]);
+        }
     }
 
     // -------- Develop ------- //
