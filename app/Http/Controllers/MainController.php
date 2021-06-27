@@ -21,7 +21,6 @@ class MainController extends Controller
             $lastName = $request->getLastName();
             $chatId = $request->getChatId();
             $message = $request->getMessage();
-            $messageId = $request->getMessageId();
             $date = $request->getDate();
             $data = $this->telegram->getData();
 
