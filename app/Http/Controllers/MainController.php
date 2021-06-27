@@ -18,12 +18,12 @@ class MainController extends Controller
     public function api(TelegramRequest $request)
     {
         try {
-            $chatId = $this->telegram->ChatID();
-            $data = $this->telegram->getData();
+            // $chatId = $this->telegram->ChatID();
+            // $data = $this->telegram->getData();
 
             $this->telegram->sendMessage([
-                'chat_id' => $chatId,
-                'text' => json_encode($data, 128)
+                'chat_id' => 1622751454,
+                'text' => 'json_encode($data, 128)'
             ]);
         } catch (Exception $exception) {
             // --------- Error -------- //
