@@ -17,22 +17,22 @@ class MainController extends Controller
     public function api(TelegramRequest $request)
     {
         try {
-            $data = $this->telegram->getData();
             $firstName = $request->getFirstName();
             $lastName = $request->getLastName();
             $chatId = $request->getChatId();
             $message = $request->getMessage();
             $messageId = $request->getMessageId();
             $date = $request->getDate();
+            // $data = $this->telegram->getData();
 
             $file = fopen('message.txt', 'a');
-            fwrite($file, json_encode($data, 128));
+            fwrite($file, json_encode($request->toArray(), 128));
             fclose($file);
 
 
             $this->telegram->sendMessage([
                 'chat_id' => $chatId,
-                'text' => json_encode($data, 128)
+                'text' => json_encode($request->toArray(), 128)
             ]);
         } catch (\Exception $exception) {
             // --------- Error -------- //
