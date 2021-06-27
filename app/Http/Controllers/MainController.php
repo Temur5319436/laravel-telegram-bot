@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Telegram;
 use App\Http\Requests\TelegramRequest;
+use Exception;
 
 class MainController extends Controller
 {
@@ -25,7 +26,7 @@ class MainController extends Controller
                 'chat_id' => $chatId,
                 'text' => json_encode($data, 128)
             ]);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             // --------- Error -------- //
             $this->telegram->sendMessage([
                 'chat_id' => $chatId,
