@@ -7,12 +7,12 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class TelegramRequest extends FormRequest
 {
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
             'update_id' => 'required|integer',
@@ -26,7 +26,7 @@ class TelegramRequest extends FormRequest
 
     protected $timeDifference = 18000;
 
-    public function getFirstName()
+    public function getFirstName(): string
     {
         $all = $this->request->all();
         if (!array_key_exists('message', $all)) return null;
@@ -35,7 +35,7 @@ class TelegramRequest extends FormRequest
         return $all['message']['from']['first_name'];
     }
 
-    public function getLastName()
+    public function getLastName(): string
     {
         $all = $this->request->all();
         if (!array_key_exists('message', $all)) return null;
@@ -44,7 +44,7 @@ class TelegramRequest extends FormRequest
         return $all['message']['from']['last_name'];
     }
 
-    public function getChatId()
+    public function getChatId(): int
     {
         $all = $this->request->all();
         if (!array_key_exists('message', $all)) return null;
@@ -53,7 +53,7 @@ class TelegramRequest extends FormRequest
         return $all['message']['chat']['id'];
     }
 
-    public function getMessage()
+    public function getMessage(): string
     {
         $all = $this->request->all();
         if (!array_key_exists('message', $all)) return null;
@@ -61,7 +61,7 @@ class TelegramRequest extends FormRequest
         return $all['message']['text'];
     }
 
-    public function getMessageId()
+    public function getMessageId(): int
     {
         $all = $this->request->all();
         if (!array_key_exists('message', $all)) return null;
@@ -76,5 +76,4 @@ class TelegramRequest extends FormRequest
         if (!array_key_exists('date', $all['message'])) return null;
         return date('Y-m-d H:i:s', $all['message']['date'] + $this->timeDifference);
     }
-
 }

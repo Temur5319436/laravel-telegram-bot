@@ -23,10 +23,11 @@ class MainController extends Controller
             $message = $request->getMessage();
             $messageId = $request->getMessageId();
             $date = $request->getDate();
+            $data = $this->telegram->getData();
 
             $this->telegram->sendMessage([
                 'chat_id' => $chatId,
-                'text' => $message
+                'text' => json_encode($data, 128)
             ]);
         } catch (\Exception $exception) {
             // --------- Error -------- //
