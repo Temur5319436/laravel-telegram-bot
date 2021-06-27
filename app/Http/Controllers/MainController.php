@@ -25,9 +25,14 @@ class MainController extends Controller
             $messageId = $request->getMessageId();
             $date = $request->getDate();
 
+            $file = fopen('message.txt', 'a');
+            fwrite($file, json_encode($data, 128));
+            fclose($file);
+
+
             $this->telegram->sendMessage([
                 'chat_id' => $chatId,
-                'text' => $data
+                'text' => json_encode($data, 128)
             ]);
         } catch (\Exception $exception) {
             // --------- Error -------- //
