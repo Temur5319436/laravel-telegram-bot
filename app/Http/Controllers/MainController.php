@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Telegram;
 use App\Http\Requests\TelegramRequest;
-use Exception;
 
 class MainController extends Controller
 {
@@ -17,15 +16,20 @@ class MainController extends Controller
 
     public function api(TelegramRequest $request)
     {
-        $chatId = $request->getChatId();
+        $data = $this->telegram->getData();
+        $firstName = $this->telegram->FirstName();
+        $lastName = $this->telegram->LastName();
+        $chatId = $this->telegram->ChatID();
+        $text = $this->telegram->Text();
+        $messageId = $this->telegram->MessageID();
+        $date = $this->telegram->Date();
 
         try {
             $this->telegram->sendMessage([
-                'chat_id' => 1622751454,
-                'text' => json_encode($request->toArray(), 128)
+                'chat_id' => $chatId,
+                'text' => json_encode($data, 128)
             ]);
-        } catch (Exception $exception) {
-            // --------- Error -------- //
+        } catch (\Exception $exception) {
             $this->telegram->sendMessage([
                 'chat_id' => $chatId,
                 'text' => json_encode([
