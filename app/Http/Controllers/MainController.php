@@ -27,14 +27,14 @@ class MainController extends Controller
             ]);
         } catch (Exception $exception) {
             // --------- Error -------- //
-            $this->telegram->sendMessage([
-                'chat_id' => $chatId,
-                'text' => json_encode([
-                    'message' => $exception->getMessage(),
-                    'file' => $exception->getFile(),
-                    'line' => $exception->getLine()
-                ], 128)
-            ]);
+            // $this->telegram->sendMessage([
+            //     'chat_id' => $chatId,
+            //     'text' => json_encode([
+            //         'message' => $exception->getMessage(),
+            //         'file' => $exception->getFile(),
+            //         'line' => $exception->getLine()
+            //     ], 128)
+            // ]);
         }
     }
 }
