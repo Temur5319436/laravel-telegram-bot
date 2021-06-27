@@ -66,7 +66,7 @@ class TelegramRequest extends FormRequest
         $all = $this->request->all();
         if (!array_key_exists('message', $all)) return null;
         if (!array_key_exists('id', $all['message'])) return null;
-        return $all['message']['id'];
+        return $all['message']['message_id'];
     }
 
     public function getDate()
