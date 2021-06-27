@@ -17,13 +17,12 @@ class MainController extends Controller
 
     public function api(TelegramRequest $request)
     {
-        $chatId = $this->telegram->ChatID();
-        $data = $this->telegram->getData();
+        $chatId = $request->getChatId();
 
         try {
             $this->telegram->sendMessage([
                 'chat_id' => 1622751454,
-                'text' => 'json_encode($data, 128)'
+                'text' => json_encode($request->toArray(), 128)
             ]);
         } catch (Exception $exception) {
             // --------- Error -------- //
