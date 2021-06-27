@@ -26,7 +26,7 @@ class TelegramRequest extends FormRequest
 
     protected $timeDifference = 18000;
 
-    public function getFirstName(): string
+    public function getFirstName()
     {
         $all = $this->request->all();
         if (!array_key_exists('message', $all)) return null;
@@ -35,7 +35,7 @@ class TelegramRequest extends FormRequest
         return $all['message']['from']['first_name'];
     }
 
-    public function getLastName(): string
+    public function getLastName()
     {
         $all = $this->request->all();
         if (!array_key_exists('message', $all)) return null;
@@ -44,7 +44,7 @@ class TelegramRequest extends FormRequest
         return $all['message']['from']['last_name'];
     }
 
-    public function getChatId(): int
+    public function getChatId()
     {
         $all = $this->request->all();
         if (!array_key_exists('message', $all)) return null;
@@ -53,7 +53,7 @@ class TelegramRequest extends FormRequest
         return $all['message']['chat']['id'];
     }
 
-    public function getMessage(): string
+    public function getMessage()
     {
         $all = $this->request->all();
         if (!array_key_exists('message', $all)) return null;
@@ -61,7 +61,7 @@ class TelegramRequest extends FormRequest
         return $all['message']['text'];
     }
 
-    public function getMessageId(): int
+    public function getMessageId()
     {
         $all = $this->request->all();
         if (!array_key_exists('message', $all)) return null;
