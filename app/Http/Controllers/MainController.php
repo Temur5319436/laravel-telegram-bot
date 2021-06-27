@@ -19,7 +19,6 @@ class MainController extends Controller
     {
         try {
             $chatId = $this->telegram->ChatID();
-            $message = $this->telegram->Text();
             $data = $this->telegram->getData();
 
             $this->telegram->sendMessage([
@@ -37,20 +36,5 @@ class MainController extends Controller
                 ], 128)
             ]);
         }
-    }
-
-    // -------- Develop ------- //
-    public function develop(TelegramRequest $request)
-    {
-        $firstName = $request->getFirstName();
-        $lastName = $request->getLastName();
-        $chatId = $request->getChatId();
-        $message = $request->getMessage();
-        $date = $request->getDate();
-
-        $this->telegram->sendMessage([
-            'chat_id' => $chatId,
-            'text' => json_encode($request->toArray(), 128)
-        ]);
     }
 }
