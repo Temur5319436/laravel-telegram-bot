@@ -17,11 +17,8 @@ class MainController extends Controller
     public function api(TelegramRequest $request)
     {
         try {
-            $firstName = $request->getFirstName();
-            $lastName = $request->getLastName();
-            $chatId = $request->getChatId();
-            $message = $request->getMessage();
-            $date = $request->getDate();
+            $chatId = $this->telegram->ChatID();
+            $message = $this->telegram->Text();
             $data = $this->telegram->getData();
 
             $this->telegram->sendMessage([
