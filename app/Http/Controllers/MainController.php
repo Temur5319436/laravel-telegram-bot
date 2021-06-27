@@ -16,20 +16,20 @@ class MainController extends Controller
 
     public function api(TelegramRequest $request)
     {
-        try {
-            $firstName = $request->getFirstName();
-            $lastName = $request->getLastName();
-            $chatId = $request->getChatId();
-            $message = $request->getMessage();
-            $messageId = $request->getMessageId();
-            $date = $request->getDate();
+        $data = $this->telegram->getData();
+        $firstName = $this->telegram->FirstName();
+        $lastName = $this->telegram->LastName();
+        $chatId = $this->telegram->ChatID();
+        $text = $this->telegram->Text();
+        $messageId = $this->telegram->MessageID();
+        $date = $this->telegram->Date();
 
+        try {
             $this->telegram->sendMessage([
                 'chat_id' => $chatId,
-                'text' => $message
+                'text' => json_encode($data, 128)
             ]);
         } catch (\Exception $exception) {
-            // --------- Error -------- //
             $this->telegram->sendMessage([
                 'chat_id' => $chatId,
                 'text' => json_encode([
@@ -39,20 +39,5 @@ class MainController extends Controller
                 ], 128)
             ]);
         }
-    }
-
-    // -------- Develop ------- //
-    public function develop(TelegramRequest $request)
-    {
-        $firstName = $request->getFirstName();
-        $lastName = $request->getLastName();
-        $chatId = $request->getChatId();
-        $message = $request->getMessage();
-        $date = $request->getDate();
-
-        $this->telegram->sendMessage([
-            'chat_id' => $chatId,
-            'text' => json_encode($request->toArray(), 128)
-        ]);
     }
 }
