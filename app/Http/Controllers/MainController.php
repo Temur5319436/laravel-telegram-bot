@@ -27,7 +27,7 @@ class MainController extends Controller
 
             $this->telegram->sendMessage([
                 'chat_id' => $chatId,
-                'text' => json_encode($data, 128)
+                'text' => $data
             ]);
         } catch (\Exception $exception) {
             // --------- Error -------- //
