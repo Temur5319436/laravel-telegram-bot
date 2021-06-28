@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Client extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'id',
+        'chat_id',
+        'username',
+        'first_name',
+        'last_name',
+        'created_at',
+        'updated_at',
+    ];
 }
