@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Telegram;
 use App\Http\Requests\TelegramRequest;
+use App\Http\Traits\RegisterClient;
 
 class MainController extends Controller
 {
+    use RegisterClient;
+
     protected Telegram $telegram;
 
     public function __construct()
@@ -25,6 +28,13 @@ class MainController extends Controller
         $date = $this->telegram->Date();
 
         try {
+
+            switch ($text) {
+                case '/start':
+                    $this->register($data);
+                    break;
+            }
+
             $this->telegram->sendMessage([
                 'chat_id' => $chatId,
                 'text' => json_encode($data, 128)
