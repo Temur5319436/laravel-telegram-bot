@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Telegram;
-use App\Http\Requests\TelegramRequest;
 use App\Http\Traits\RegisterClient;
+use App\Http\Requests\TelegramRequest;
 
 class MainController extends Controller
 {
