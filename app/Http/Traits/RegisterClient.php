@@ -11,11 +11,16 @@ trait RegisterClient
         $chatId = $data['message']['chat']['id'];
         $client = Client::where('chat_id', $chatId)->first();
         if ($client) return;
+
+        $username = array_key_exists('username', $data['message']['chat']) ? $data['message']['chat']['username'] : null;
+        $firstName = array_key_exists('first_name', $data['message']['chat']) ? $data['message']['chat']['first_name'] : null;
+        $lastName = array_key_exists('last_name', $data['message']['chat']) ? $data['message']['chat']['last_name'] : null;
+
         Client::create([
             'chat_id' => $chatId,
-            'username' => $data['message']['chat']['username'],
-            'first_name' => $data['message']['chat']['first_name'],
-            'last_name' => $data['message']['chat']['last_name'],
+            'username' => $username,
+            'first_name' => $firstName,
+            'last_name' => $lastName,
         ]);
     }
 }
