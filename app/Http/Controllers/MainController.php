@@ -29,11 +29,11 @@ class MainController extends Controller
         $date = $this->telegram->Date();
 
         try {
-            $stage = Cache::get($chatId);
+            $stage = Cache::get($chatId . 'stage');
             switch ($text) {
                 case '/start':
                     $this->register($data);
-                    Cache::put($chatId, 'start');
+                    Cache::put($chatId . ':stage', 'start');
                     break;
             }
 
