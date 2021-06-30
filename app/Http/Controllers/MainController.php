@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Telegram;
 use App\Http\Traits\RegisterClient;
 use App\Http\Requests\TelegramRequest;
+use Illuminate\Support\Facades\Cache;
 
 class MainController extends Controller
 {
@@ -28,16 +29,17 @@ class MainController extends Controller
         $date = $this->telegram->Date();
 
         try {
-
+            $stage = Cache::get($chatId);
             switch ($text) {
                 case '/start':
                     $this->register($data);
+                    Cache::put($chatId, 'start');
                     break;
             }
 
             $this->telegram->sendMessage([
                 'chat_id' => $chatId,
-                'text' => json_encode($data, 128)
+                'text' => $stage
             ]);
         } catch (\Exception $exception) {
             $this->telegram->sendMessage([
