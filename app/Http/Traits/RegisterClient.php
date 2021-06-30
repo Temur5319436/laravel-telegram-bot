@@ -37,7 +37,6 @@ trait RegisterClient
                         ['text' => 'Filiallar']
                     ]
                 ],
-                'resize' => true
             ])
         ]);
     }
