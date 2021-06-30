@@ -2,12 +2,14 @@
 
 namespace App\Http\Traits;
 
+use Telegram;
 use App\Models\Client;
 
 trait RegisterClient
 {
-    public function register($data)
+    public function register(Telegram $telegram)
     {
+        $data = $telegram->getData();
         $chatId = $data['message']['chat']['id'];
         $client = Client::where('chat_id', $chatId)->first();
         if ($client) return;
@@ -21,6 +23,22 @@ trait RegisterClient
             'username' => $username,
             'first_name' => $firstName,
             'last_name' => $lastName,
+        ]);
+
+        $telegram->sendMessage([
+            'chat_id' => $chatId,
+            'text' => 'Xush kelibsiz!',
+            'reply_markup' => json_encode([
+                'keyboard' => [
+                    [
+                        ['text' => 'Qidirish']
+                    ],
+                    [
+                        ['text' => 'Filiallar']
+                    ]
+                ],
+                'resize' => true
+            ])
         ]);
     }
 }

@@ -20,19 +20,13 @@ class MainController extends Controller
 
     public function api(TelegramRequest $request)
     {
-        $data = $this->telegram->getData();
-        $firstName = $this->telegram->FirstName();
-        $lastName = $this->telegram->LastName();
         $chatId = $this->telegram->ChatID();
         $text = $this->telegram->Text();
-        $messageId = $this->telegram->MessageID();
-        $date = $this->telegram->Date();
-
         try {
             $stage = Cache::get($chatId . ':stage');
             switch ($text) {
                 case '/start':
-                    $this->register($data);
+                    $this->register($this->telegram);
                     Cache::put($chatId . ':stage', 'start');
                     break;
             }
