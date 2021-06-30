@@ -30,11 +30,6 @@ class MainController extends Controller
                     Cache::put($chatId . ':stage', 'start');
                     break;
             }
-
-            $this->telegram->sendMessage([
-                'chat_id' => $chatId,
-                'text' => $stage
-            ]);
         } catch (\Exception $exception) {
             $this->telegram->sendMessage([
                 'chat_id' => $chatId,
