@@ -25,19 +25,18 @@ trait RegisterClient
             'last_name' => $lastName,
         ]);
 
+
         $telegram->sendMessage([
             'chat_id' => $chatId,
             'text' => 'Xush kelibsiz!',
-            'reply_markup' => json_encode([
-                'keyboard' => [
-                    [
-                        ['text' => 'Qidirish']
-                    ],
-                    [
-                        ['text' => 'Filiallar']
-                    ]
+            'reply_markup' => $telegram->buildKeyboard([
+                [
+                    ['text' => 'Qidirish!'], ['text' => 'Do\'konlar']
                 ],
-            ])
+                [
+                    ['text' => 'Qidirish!'], ['text' => 'Do\'konlar']
+                ],
+            ], false, true)
         ]);
     }
 }
