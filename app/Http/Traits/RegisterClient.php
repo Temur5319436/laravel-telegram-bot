@@ -16,14 +16,17 @@ trait RegisterClient
         $telegram->sendMessage([
             'chat_id' => $chatId,
             'text' => 'Xush kelibsiz!',
-            'reply_markup' => $telegram->buildKeyboard([
-                [
-                    ['text' => 'Qidirish!'], ['text' => 'Do\'konlar']
+            'reply_markup' => json_encode([
+                'keyboard' => [
+                    [
+                        ['text' => 'Qidirish']
+                    ],
+                    [
+                        ['text' => 'Do\'konlar']
+                    ]
                 ],
-                [
-                    ['text' => 'Qidirish!'], ['text' => 'Do\'konlar']
-                ],
-            ], false, true)
+                'resize' => true
+            ])
         ]);
 
         if ($client) return;
