@@ -19,13 +19,13 @@ trait RegisterClient
             'reply_markup' => json_encode([
                 'keyboard' => [
                     [
-                        ['text' => 'Qidirish']
+                        ['text' => '🔍 Tovarlarni qidirish']
                     ],
                     [
-                        ['text' => 'Do\'konlar']
+                        ['text' => '🏢 Filiallar']
                     ]
                 ],
-                'resize' => true
+                'resize_keyboard' => true
             ])
         ]);
 
