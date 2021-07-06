@@ -16,7 +16,7 @@ class ProductController extends Controller
             'text' => '🔍 Tovar nomini yozing...',
             'reply_markup' => json_encode([
                 'keyboard' => [
-                    [['text' => 'Qaytish']]
+                    [['text' => '🔙 Qaytish']]
                 ],
                 'resize_keyboard' => true
             ])
@@ -24,7 +24,7 @@ class ProductController extends Controller
         Cache::put($chatId . ':stage', 'products_search');
     }
 
-    public static function search()
+    public static function search(Telegram $telegram)
     {
     }
 }

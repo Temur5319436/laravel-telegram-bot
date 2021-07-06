@@ -32,6 +32,7 @@ class MainController extends Controller
                 ProductController::index($this->telegram);
             } else if ($text == '🏢 Filiallar') {
                 BranchController::index($this->telegram);
+            } else if ($text == '🔙 Qaytish') {
             }
 
             switch ($stage) {
