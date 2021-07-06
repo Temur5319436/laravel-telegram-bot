@@ -4,6 +4,7 @@ namespace App\Http\Traits;
 
 use Telegram;
 use App\Models\Client;
+use Illuminate\Support\Facades\Cache;
 
 trait RegisterClient
 {
@@ -28,6 +29,7 @@ trait RegisterClient
                 'resize_keyboard' => true
             ])
         ]);
+        Cache::put($chatId . ':stage', 'start');
 
         if ($client) return;
 

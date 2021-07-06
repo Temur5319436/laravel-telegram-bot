@@ -24,10 +24,21 @@ class MainController extends Controller
         $text = $this->telegram->Text();
         try {
             $stage = Cache::get($chatId . ':stage');
-            switch ($text) {
-                case '/start':
-                    $this->register($this->telegram);
-                    Cache::put($chatId . ':stage', 'start');
+
+            if ($text == '/start') {
+                $this->register($this->telegram);
+                return;
+            } else if ($text == '🔍 Tovarlarni qidirish') {
+                ProductController::index($this->telegram);
+            } else if ($text == '🏢 Filiallar') {
+                BranchController::index($this->telegram);
+            }
+
+            switch ($stage) {
+                case 'products_search':
+                    ProductController::search($this->telegram);
+                    break;
+                case '':
                     break;
             }
         } catch (\Exception $exception) {

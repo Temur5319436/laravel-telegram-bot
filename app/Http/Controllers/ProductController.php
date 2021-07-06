@@ -4,18 +4,27 @@ namespace App\Http\Controllers;
 
 use Telegram;
 use App\Models\Product;
+use Illuminate\Support\Facades\Cache;
 
 class ProductController extends Controller
 {
-    public static function search(Telegram $telegram)
+    public static function index(Telegram $telegram)
     {
-        $text = $telegram->Text();
+        $chatId = $telegram->ChatID();
+        $telegram->sendMessage([
+            'chat_id' => $chatId,
+            'text' => '🔍 Tovar nomini yozing...',
+            'reply_markup' => json_encode([
+                'keyboard' => [
+                    [['text' => 'Qaytish']]
+                ],
+                'resize_keyboard' => true
+            ])
+        ]);
+        Cache::put($chatId . ':stage', 'products_search');
+    }
 
-        $products = Product::where('title', 'LIKE', "%$text%")
-            ->orderBy('title')
-            ->get();
-        $message = '';
-        foreach ($products as $key => $product) {
-        }
+    public static function search()
+    {
     }
 }
