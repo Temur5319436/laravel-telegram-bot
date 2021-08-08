@@ -26,4 +26,9 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
+
+    public function created_at()
+    {
+        return $this->created_at->format('Y-m-d H:i:s');
+    }
 }

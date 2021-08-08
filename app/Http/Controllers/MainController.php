@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use Telegram;
 use App\Http\Traits\RegisterClient;
 use App\Http\Requests\TelegramRequest;
+use App\Http\Traits\BackButton;
 use Illuminate\Support\Facades\Cache;
 
 class MainController extends Controller
 {
-    use RegisterClient;
+    use RegisterClient,
+        BackButton;
 
     protected Telegram $telegram;
 
@@ -22,6 +24,11 @@ class MainController extends Controller
     {
         $chatId = $this->telegram->ChatID();
         $text = $this->telegram->Text();
+        $data = $this->telegram->getData();
+        $this->telegram->sendMessage([
+            'chat_id' => $chatId,
+            'text' => json_encode($data)
+        ]);
         try {
             $stage = Cache::get($chatId . ':stage');
 
@@ -29,10 +36,11 @@ class MainController extends Controller
                 $this->register($this->telegram);
                 return;
             } else if ($text == '🔍 Tovarlarni qidirish') {
-                ProductController::index($this->telegram);
+                ProductController::switch($this->telegram);
             } else if ($text == '🏢 Filiallar') {
-                BranchController::index($this->telegram);
-            } else if ($text == '🔙 Qaytish') {
+                BranchController::switch($this->telegram);
+            } else if ($text == '◀️ Qaytish') {
+                $this->back($this->telegram);
             }
 
             switch ($stage) {

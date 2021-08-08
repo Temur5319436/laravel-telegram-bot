@@ -7,7 +7,7 @@ use Telegram;
 
 class BranchController extends Controller
 {
-    public static function index(Telegram $telegram)
+    public static function switch(Telegram $telegram)
     {
         $chatId = $telegram->ChatID();
         $telegram->sendMessage([
