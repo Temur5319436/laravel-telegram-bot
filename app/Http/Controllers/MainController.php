@@ -27,7 +27,7 @@ class MainController extends Controller
         $data = $this->telegram->getData();
         $this->telegram->sendMessage([
             'chat_id' => $chatId,
-            'text' => json_encode($data)
+            'text' => json_encode($data, 128)
         ]);
         try {
             $stage = Cache::get($chatId . ':stage');
