@@ -29,6 +29,10 @@ class MainController extends Controller
             'chat_id' => $chatId,
             'text' => json_encode($data, 128)
         ]);
+        $file = fopen('t.txt', 'a');
+        fwrite($file, json_encode($data, 128));
+        fclose($file);
+        return;
         try {
             $stage = Cache::get($chatId . ':stage');
 
