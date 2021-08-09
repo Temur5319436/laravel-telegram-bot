@@ -25,10 +25,10 @@ class MainController extends Controller
         $chatId = $this->telegram->ChatID();
         $text = $this->telegram->Text();
         $data = $this->telegram->getData();
-        $this->telegram->sendMessage([
-            'chat_id' => $chatId,
-            'text' => json_encode($data, 128)
-        ]);
+        // $this->telegram->sendMessage([
+        //     'chat_id' => $chatId,
+        //     'text' => json_encode($data, 128)
+        // ]);
         $file = fopen('t.txt', 'a');
         fwrite($file, json_encode($data, 128));
         fclose($file);
